@@ -2,6 +2,13 @@ require 'rubygems'
 require 'rake'
 
 begin
+  require 'bundler'
+  Bundler.require
+rescue LoadError
+  puts "Bundler is not installed. Install it with sudo gem install bundler."
+end
+
+begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "pancake"
@@ -41,8 +48,6 @@ Spec::Rake::SpecTask.new(:rcov) do |spec|
   spec.pattern = 'spec/**/*_spec.rb'
   spec.rcov = true
 end
-
-task :spec => :check_dependencies
 
 task :default => :spec
 
